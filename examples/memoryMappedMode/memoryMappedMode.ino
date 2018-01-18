@@ -5,7 +5,7 @@
  *
  */
 
-#include <MX25R6435F.h>
+#include <QuadSPIFlash.h>
 
 #define BUFFER_SIZE         ((uint32_t)0x0100)
 #define WRITE_READ_ADDR     ((uint32_t)0x0050)
@@ -29,12 +29,12 @@ void loop() {
   Serial.println("********************* Memory mapped Test ************************");
   Serial.println("*****************************************************************");
 
-  MX25R6435F.end();
+  QSPIFlash.end();
 
   /*##-1- Configure the device ##########################################*/
   /* Device configuration */
-  MX25R6435F.begin();
-  status = MX25R6435F.status();
+  QSPIFlash.begin();
+  status = QSPIFlash.status();
 
   if ((status == MEMORY_ERROR) || (status == MEMORY_SUSPENDED) || (status == MEMORY_BUSY))
   {
@@ -45,11 +45,11 @@ void loop() {
     Serial.println("Init : OK");
 
     /*##-2- Read & check the info #######################################*/
-    if( (MX25R6435F.info(MEMORY_SIZE) != 0x800000)        ||
-        (MX25R6435F.info(MEMORY_SECTOR_SIZE) != 0x1000)   ||
-        (MX25R6435F.info(MEMORY_PAGE_SIZE) != 0x100)      ||
-        (MX25R6435F.info(MEMORY_SECTOR_NUMBER) != 2048)   ||
-        (MX25R6435F.info(MEMORY_PAGE_NUMBER) != 32768))
+    if( (QSPIFlash.info(MEMORY_SIZE) != 0x800000)        ||
+        (QSPIFlash.info(MEMORY_SECTOR_SIZE) != 0x1000)   ||
+        (QSPIFlash.info(MEMORY_PAGE_SIZE) != 0x100)      ||
+        (QSPIFlash.info(MEMORY_SECTOR_NUMBER) != 2048)   ||
+        (QSPIFlash.info(MEMORY_PAGE_NUMBER) != 32768))
     {
       Serial.println("GET INFO : FAILED, Test Aborted");
     }
@@ -58,7 +58,7 @@ void loop() {
       Serial.println("GET INFO : OK");
 
       /*##-3- Erase memory ################################################*/
-      if(MX25R6435F.erase(WRITE_READ_ADDR) != MEMORY_OK)
+      if(QSPIFlash.erase(WRITE_READ_ADDR) != MEMORY_OK)
       {
         Serial.println("ERASE : FAILED, Test Aborted");
       }
@@ -72,14 +72,14 @@ void loop() {
 
         for(uint32_t i = 0; i < 1; i++)
         {
-          if(MX25R6435F.write(aTxBuffer, (i * 0x100), BUFFER_SIZE) != BUFFER_SIZE)
+          if(QSPIFlash.write(aTxBuffer, (i * 0x100), BUFFER_SIZE) != BUFFER_SIZE)
           {
             Serial.println("WRITE : FAILED, Test Aborted");
           }
         }
 
         /* Read back data from the QSPI memory */
-        mem_addr = MX25R6435F.mapped();
+        mem_addr = QSPIFlash.mapped();
 
         if(mem_addr != NULL) {
           for(uint32_t i = 0; i < 1; i++)
