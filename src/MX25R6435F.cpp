@@ -154,6 +154,9 @@ uint8_t MX25R6435FClass::wakeup(void)
 
 uint8_t MX25R6435FClass::status(void)
 {
+  if(initDone == 0)
+    return MEMORY_ERROR;
+
   return BSP_QSPI_GetStatus();
 }
 
