@@ -88,16 +88,16 @@
   * @{
   */
 
-/** @addtogroup STM32L475E_IOT01
+/** @addtogroup Components
   * @{
   */
 
-/** @defgroup STM32L475E_IOT01_QSPI QSPI
+/** @defgroup quadspiflash QSPI
   * @{
   */
 
 /* Private constants --------------------------------------------------------*/
-/** @defgroup STM32L475E_IOT01_QSPI_Private_Constants QSPI Private Constants
+/** @defgroup QSPI_Private_Constants QSPI Private Constants
   * @{
   */
 #define QSPI_QUAD_DISABLE       0x0
@@ -110,7 +110,7 @@
   */
 /* Private variables ---------------------------------------------------------*/
 
-/** @defgroup STM32L475E_IOT01_QSPI_Private_Variables QSPI Private Variables
+/** @defgroup QSPI_Private_Variables QSPI Private Variables
   * @{
   */
 QSPI_HandleTypeDef QSPIHandle;
@@ -122,7 +122,7 @@ QSPI_HandleTypeDef QSPIHandle;
 
 /* Private functions ---------------------------------------------------------*/
 
-/** @defgroup STM32L475E_IOT01_QSPI_Private_Functions QSPI Private Functions
+/** @defgroup QSPI_Private_Functions QSPI Private Functions
   * @{
   */
 static uint8_t QSPI_ResetMemory        (QSPI_HandleTypeDef *hqspi);
@@ -138,7 +138,7 @@ static uint8_t qspi_setClockPrescaler  (void);
 
 /* Exported functions ---------------------------------------------------------*/
 
-/** @addtogroup STM32L475E_IOT01_QSPI_Exported_Functions
+/** @addtogroup QSPI_Exported_Functions
   * @{
   */
 
@@ -827,7 +827,7 @@ __weak void BSP_QSPI_MspDeInit(void)
   * @}
   */
 
-/** @addtogroup STM32L475E_IOT01_QSPI_Private_Functions
+/** @addtogroup QSPI_Private_Functions
   * @{
   */
 

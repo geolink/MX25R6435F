@@ -53,7 +53,7 @@
   * @{
   */ 
   
-/** @addtogroup mx25r6435f
+/** @addtogroup quadspiflash
   * @{
   */
 

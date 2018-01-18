@@ -1,11 +1,11 @@
 /**
   ******************************************************************************
-  * @file    mx25r6435f_driver.h
+  * @file    qspiflash_driver.h
   * @author  MCD Application Team
   * @version V1.1.0
   * @date    21-April-2017
   * @brief   This file contains the common defines and functions prototypes for
-  *          the mx25r6435f_driver.c driver.
+  *          the qspiflash_driver.c driver.
   ******************************************************************************
   * @attention
   *
@@ -56,16 +56,16 @@
   * @{
   */
 
-/** @addtogroup STM32L475E_IOT01
+/** @addtogroup Components
   * @{
   */
 
-/** @addtogroup STM32L475E_IOT01_QSPI
+/** @addtogroup quadspiflash
   * @{
   */
 
 /* Exported constants --------------------------------------------------------*/
-/** @defgroup STM32L475E_IOT01_QSPI_Exported_Constants QSPI Exported Constants
+/** @defgroup QSPI_Exported_Constants QSPI Exported Constants
   * @{
   */
 /* QSPI Error codes */
@@ -80,7 +80,7 @@
   */
 
 /* Exported types ------------------------------------------------------------*/
-/** @defgroup STM32L475E_IOT01_QSPI_Exported_Types QSPI Exported Types
+/** @defgroup QSPI_Exported_Types QSPI Exported Types
   * @{
   */
 /* QSPI Info */
@@ -97,7 +97,7 @@ typedef struct {
   */
 
 /* Exported functions --------------------------------------------------------*/
-/** @defgroup STM32L475E_IOT01_QSPI_Exported_Functions QSPI Exported Functions
+/** @defgroup QSPI_Exported_Functions QSPI Exported Functions
   * @{
   */
 uint8_t BSP_QSPI_Init                  (void);
