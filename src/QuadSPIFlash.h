@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    MX25R6435F.h
+  * @file    QuadSPIFlash.h
   * @author  WI6LABS
   * @version V1.0.0
   * @date    19-July-2017
-  * @brief   MX25R6435F library for STM32 Arduino
+  * @brief   QuadSPIFlash library for STM32 Arduino
   *
   ******************************************************************************
   * @attention
@@ -36,10 +36,10 @@
   ******************************************************************************
   */
 
-#ifndef _MX25R6435F_H_
-#define _MX25R6435F_H_
+#ifndef _QUADSPIFLASH_H_
+#define _QUADSPIFLASH_H_
 
-#include "mx25r6435f_driver.h"
+#include "qspiflash_driver.h"
 
 /* Memory configuration paremeters */
 typedef enum {
@@ -60,10 +60,10 @@ typedef enum {
 /* Base address of the memory in mapped mode */
 #define MEMORY_MAPPED_ADDRESS ((uint32_t)0x90000000)
 
-class MX25R6435FClass
+class QSPIFlashClass
 {
   public:
-    MX25R6435FClass();
+    QSPIFlashClass();
 
     /* Initializes the memory interface. */
     void begin(void);
@@ -176,6 +176,6 @@ class MX25R6435FClass
     uint8_t initDone;
 };
 
-extern MX25R6435FClass MX25R6435F;
+extern QSPIFlashClass QSPIFlash;
 
-#endif /* _MX25R6435F_H_ */
+#endif /* _QUADSPIFLASH_H_ */

@@ -79,7 +79,9 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "mx25r6435f_driver.h"
+#include "qspiflash_driver.h"
+#include "mx25r6435f_desc.h"
+
 #include "PeripheralPins.h"
 
 /** @addtogroup BSP

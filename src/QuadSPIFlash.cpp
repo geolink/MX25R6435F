@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    MX25R6435F.c
+  * @file    QuadSPIFlash.c
   * @author  WI6LABS
   * @version V1.0.0
   * @date    19-July-2017
-  * @brief   MX25R6435F library for STM32 Arduino
+  * @brief   QuadSPIFlash library for STM32 Arduino
   *
   ******************************************************************************
   * @attention
@@ -36,33 +36,33 @@
   ******************************************************************************
   */
 
-#include "MX25R6435F.h"
+#include "QuadSPIFlash.h"
 
-MX25R6435FClass MX25R6435F;
+QSPIFlashClass QSPIFlash;
 
-MX25R6435FClass::MX25R6435FClass(): initDone(0)
+QSPIFlashClass::QSPIFlashClass(): initDone(0)
 {
 
 }
 
-void MX25R6435FClass::begin(void)
+void QSPIFlashClass::begin(void)
 {
   if(BSP_QSPI_Init() == MEMORY_OK)
     initDone = 1;
 }
 
-void MX25R6435FClass::end(void)
+void QSPIFlashClass::end(void)
 {
   BSP_QSPI_DeInit();
   initDone = 0;
 }
 
-uint32_t MX25R6435FClass::write(uint8_t data, uint32_t addr)
+uint32_t QSPIFlashClass::write(uint8_t data, uint32_t addr)
 {
   return write(&data, addr, 1);
 }
 
-uint32_t MX25R6435FClass::write(uint8_t *pData, uint32_t addr, uint32_t size)
+uint32_t QSPIFlashClass::write(uint8_t *pData, uint32_t addr, uint32_t size)
 {
   if((pData == NULL) || (initDone == 0))
     return 0;
@@ -73,7 +73,7 @@ uint32_t MX25R6435FClass::write(uint8_t *pData, uint32_t addr, uint32_t size)
   return size;
 }
 
-uint8_t MX25R6435FClass::read(uint32_t addr)
+uint8_t QSPIFlashClass::read(uint32_t addr)
 {
   uint8_t data;
 
@@ -82,13 +82,13 @@ uint8_t MX25R6435FClass::read(uint32_t addr)
   return data;
 }
 
-void MX25R6435FClass::read(uint8_t *pData, uint32_t addr, uint32_t size)
+void QSPIFlashClass::read(uint8_t *pData, uint32_t addr, uint32_t size)
 {
   if((pData != NULL) && (initDone == 1))
     BSP_QSPI_Read(pData, addr, size);
 }
 
-uint8_t *MX25R6435FClass::mapped(void)
+uint8_t *QSPIFlashClass::mapped(void)
 {
   if(BSP_QSPI_EnableMemoryMappedMode() != MEMORY_OK)
     return NULL;
@@ -96,7 +96,7 @@ uint8_t *MX25R6435FClass::mapped(void)
   return (uint8_t *)MEMORY_MAPPED_ADDRESS;
 }
 
-uint8_t MX25R6435FClass::erase(uint32_t addr)
+uint8_t QSPIFlashClass::erase(uint32_t addr)
 {
   if(initDone == 0)
     return MEMORY_ERROR;
@@ -104,7 +104,7 @@ uint8_t MX25R6435FClass::erase(uint32_t addr)
   return BSP_QSPI_Erase_Block(addr);
 }
 
-uint8_t MX25R6435FClass::eraseChip(void)
+uint8_t QSPIFlashClass::eraseChip(void)
 {
   if(initDone == 0)
     return MEMORY_ERROR;
@@ -112,7 +112,7 @@ uint8_t MX25R6435FClass::eraseChip(void)
   return BSP_QSPI_Erase_Chip();
 }
 
-uint8_t MX25R6435FClass::eraseSector(uint32_t sector)
+uint8_t QSPIFlashClass::eraseSector(uint32_t sector)
 {
   if(initDone == 0)
     return MEMORY_ERROR;
@@ -120,7 +120,7 @@ uint8_t MX25R6435FClass::eraseSector(uint32_t sector)
   return BSP_QSPI_Erase_Sector(sector);
 }
 
-uint8_t MX25R6435FClass::suspendErase(void)
+uint8_t QSPIFlashClass::suspendErase(void)
 {
   if(initDone == 0)
     return MEMORY_ERROR;
@@ -128,7 +128,7 @@ uint8_t MX25R6435FClass::suspendErase(void)
   return BSP_QSPI_SuspendErase();
 }
 
-uint8_t MX25R6435FClass::resumeErase(void)
+uint8_t QSPIFlashClass::resumeErase(void)
 {
   if(initDone == 0)
     return MEMORY_ERROR;
@@ -136,7 +136,7 @@ uint8_t MX25R6435FClass::resumeErase(void)
   return BSP_QSPI_ResumeErase();
 }
 
-uint8_t MX25R6435FClass::sleep(void)
+uint8_t QSPIFlashClass::sleep(void)
 {
   if(initDone == 0)
     return MEMORY_ERROR;
@@ -144,7 +144,7 @@ uint8_t MX25R6435FClass::sleep(void)
   return BSP_QSPI_EnterDeepPowerDown();
 }
 
-uint8_t MX25R6435FClass::wakeup(void)
+uint8_t QSPIFlashClass::wakeup(void)
 {
   if(initDone == 0)
     return MEMORY_ERROR;
@@ -152,7 +152,7 @@ uint8_t MX25R6435FClass::wakeup(void)
   return BSP_QSPI_LeaveDeepPowerDown();
 }
 
-uint8_t MX25R6435FClass::status(void)
+uint8_t QSPIFlashClass::status(void)
 {
   if(initDone == 0)
     return MEMORY_ERROR;
@@ -160,7 +160,7 @@ uint8_t MX25R6435FClass::status(void)
   return BSP_QSPI_GetStatus();
 }
 
-uint32_t MX25R6435FClass::info(memory_info_t info)
+uint32_t QSPIFlashClass::info(memory_info_t info)
 {
   uint32_t res;
   QSPI_Info pInfo;
@@ -196,7 +196,7 @@ uint32_t MX25R6435FClass::info(memory_info_t info)
   return res;
 }
 
-uint32_t MX25R6435FClass::length(void)
+uint32_t QSPIFlashClass::length(void)
 {
   return info(MEMORY_SIZE);
 }
