@@ -6,7 +6,7 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-MX25R6435F	KEYWORD
+QSPIFlash	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
